@@ -1,0 +1,34 @@
+<!-- Vorm 1 -->
+<form id="form1">
+  <input name="name" placeholder="Nimi">
+  <input name="age" placeholder="Vanus">
+  <button type="button" onclick="saveForm1()">Järgmine</button>
+</form>
+
+<!-- Vorm 2 -->
+<form id="form2">
+  <input name="email" placeholder="Email">
+  <button type="button" onclick="saveForm2()">Salvesta kõik</button>
+</form>
+
+<script>
+function saveForm1() {
+    const formData = Object.fromEntries(new FormData(document.getElementById('form1')));
+    localStorage.setItem('formData', JSON.stringify(formData));
+    alert("Vorm 1 andmed salvestatud!");
+}
+
+function saveForm2() {
+    const form1Data = JSON.parse(localStorage.getItem('formData')) || {};
+    const form2Data = Object.fromEntries(new FormData(document.getElementById('form2')));
+    const allData = {...form1Data, ...form2Data};
+
+    // Näide fetch kasutamisest serverisse saatmiseks
+    fetch('/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(allData)
+    }).then(res => res.json())
+      .then(data => alert('Andmed salvestatud andmebaasi!'));
+}
+</script>
