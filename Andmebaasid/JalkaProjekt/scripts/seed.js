@@ -1,5 +1,5 @@
 const { Player } = require("../models");
-
+// preloaded mängijad
 (async () => {
   await Player.bulkCreate([
     { name: "Lionel Messi", position: "Forward", number: 10 },
