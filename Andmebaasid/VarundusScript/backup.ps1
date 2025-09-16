@@ -2,15 +2,14 @@
 $Date = Get-Date -Format "yyyyMMdd_HHmmss"
 $BackupFile = "C:\Backups\RasmusVeike_$Date.sql"
 # sqlcmd -S localhost -U sa -P MyPassword -Q "BACKUP DATABASE [MyDatabase] TO DISK='$BackupFile'"
-
 # mysqldump -u root -pMyPassword mydatabase > $BackupFile
 
-# Testiks lihtsalt tühi fail:
+# tühi fail
 "See oleks andmebaasi varukoopia" | Out-File -FilePath $BackupFile -Encoding utf8
 
 Write-Output "Backup loodud: $BackupFile"
 
-# Kasutame WinSCP .NET assembly (vajab WinSCP)
+# WinSCP .NET assembly (vajab WinSCP)
 
 Add-Type -Path "C:\Program Files (x86)\WinSCP\WinSCPnet.dll"
 

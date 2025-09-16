@@ -1,11 +1,10 @@
-<!-- Vorm 1 -->
+
 <form id="form1">
   <input name="name" placeholder="Nimi">
   <input name="age" placeholder="Vanus">
   <button type="button" onclick="saveForm1()">Järgmine</button>
 </form>
 
-<!-- Vorm 2 -->
 <form id="form2">
   <input name="email" placeholder="Email">
   <button type="button" onclick="saveForm2()">Salvesta kõik</button>
@@ -23,7 +22,7 @@ function saveForm2() {
     const form2Data = Object.fromEntries(new FormData(document.getElementById('form2')));
     const allData = {...form1Data, ...form2Data};
 
-    // Näide fetch kasutamisest serverisse saatmiseks
+
     fetch('/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
